@@ -1,5 +1,20 @@
 gsap.registerPlugin(ScrollTrigger);
 
+// Search - runs immediately when script loads
+const heroSearchBtn = document.querySelector("#hero-search-btn");
+const heroSearchInput = document.querySelector("#search-input");
+
+if (heroSearchBtn) {
+  heroSearchBtn.onclick = () => {
+    const query = heroSearchInput.value.trim();
+    if (query) {
+      window.location.href = `listings.html?location=${encodeURIComponent(query)}`;
+    } else {
+      window.location.href = "listings.html";
+    }
+  };
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 
   // Hero

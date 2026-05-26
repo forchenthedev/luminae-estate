@@ -94,7 +94,7 @@
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2C8.686 2 6 4.686 6 8c0 5.25 6 13 6 13s6-7.75 6-13c0-3.314-2.686-6-6-6z"/>
         </svg>
-        <input type="text" placeholder="Location" class="outline-none text-sm text-gray-900 w-full">
+        <input id="search-input" type="text" placeholder="Location" class="outline-none text-sm text-gray-900 w-full">
       </div>
 
       <!-- Property Type -->
@@ -111,7 +111,7 @@
       </div>
 
       <!-- Search Button -->
-      <button class="flex items-center gap-2 bg-gray-900 hover:bg-indigo-700 text-white text-sm px-4 py-4 transition duration-300">
+      <button id="hero-search-btn" class="flex items-center gap-2 bg-gray-900 hover:bg-indigo-700 text-white text-sm px-4 py-4 transition duration-300">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/>
         </svg>
@@ -426,11 +426,8 @@
   </div>
 </footer>
      
-  <script>
-       gsap.registerPlugin(ScrollTrigger);
-  </script>
+  
   <script src="navbar.js"></script>
   <script src="home.js"></script>
-</body>
 </body>
 </html>
