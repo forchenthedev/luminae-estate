@@ -39,8 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Estate Philosophy heading
-  gsap.from("#about-content .text-center h1", {
-    scrollTrigger: { trigger: "#about-content .text-center", start: "top 85%" },
+  gsap.from("#about-section .text-center h1", {
+    scrollTrigger: { trigger: "#about-content .text-center",
+       start: "top 85%" },
     opacity: 0,
     y: 30,
     duration: 0.8,
@@ -59,14 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Visionary Leadership
-  gsap.from("#about-content h1.font-bold.text-3xl", {
-    scrollTrigger: { trigger: "#about-content h1.font-bold.text-3xl", start: "top 85%" },
-    opacity: 0,
-    y: 30,
-    duration: 0.8,
-    ease: "power3.out"
-  });
 
   // Team cards
   gsap.utils.toArray("#about-content .grid .overflow-hidden").forEach((card, i) => {

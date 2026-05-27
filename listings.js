@@ -1,7 +1,8 @@
 gsap.registerPlugin(ScrollTrigger);
 
+
   // Declare cards first
-  const cards = document.querySelectorAll("#listings-grid .bg-white");
+  const cards = document.querySelectorAll("#cards-grid .bg-white");
 
   // Read URL query and filter on load - plain CSS, no GSAP
   const urlParams = new URLSearchParams(window.location.search);
@@ -52,21 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ease: "power3.out"
   });
 
-  // Cards one after the other
-  gsap.utils.toArray("#listings-grid .bg-white").forEach((card, i) => {
-    gsap.from(card, {
-      scrollTrigger: {
-        trigger: card,
-        start: "top 95%",
-        toggleActions: "play none none none"
-      },
-      opacity: 0,
-      y: 50,
-      duration: 0.7,
-      delay: i * 0.08,
-      ease: "power3.out"
-    });
-  });
+
 
   // Footer
   gsap.from("#footer .grid > div", {

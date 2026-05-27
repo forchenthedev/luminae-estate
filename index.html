@@ -10,424 +10,320 @@
     <link rel="stylesheet" href="output.css">
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <style>
-     #navbtn {
-        display: none;
-    }
+    <style>
+        #navbtn {
+            display: none;
+        }
+        @media (min-width: 768px) {
+            #navbtn {
+                display: flex;
+            }
+        }
 
-@media (min-width: 768px) {
-  #navbtn {
-    display: flex;
-  }
-}
-  </style> 
+        #hero-search-bar {
+            display: flex;
+            flex-direction: column;
+            background: white;
+            border-radius: 2px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            width: 100%;
+            max-width: 512px;
+            margin: 0 auto;
+        }
 
+        .search-field {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            border-bottom: 1px solid #e5e7eb;
+            flex: 1;
+        }
+
+        .search-field input,
+        .search-field select {
+            outline: none;
+            font-size: 0.875rem;
+            color: #111827;
+            background: transparent;
+            width: 100%;
+            border: none;
+        }
+
+        .search-field select {
+            color: #6b7280;
+            cursor: pointer;
+        }
+
+        #hero-search-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: #111827;
+            color: white;
+            font-size: 0.875rem;
+            padding: 14px 24px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        #hero-search-btn:hover {
+            background: #4338ca;
+        }
+
+        @media (min-width: 640px) {
+            #hero-search-bar {
+                flex-direction: row;
+                align-items: stretch;
+            }
+            .search-field {
+                border-bottom: none;
+                border-right: 1px solid #e5e7eb;
+            }
+            #hero-search-btn {
+                width: auto;
+                flex-shrink: 0;
+            }
+        }
+    </style>
 </head>
 
 <body class="font-inter">
     <nav id="navbar" class="flex items-center justify-between px-8 py-6 sticky top-0 z-50 bg-white">
-
-        <!--Logo-->
-        <div class="text-3xl font-bold text-gray-900 tracking-wider uppercase">Luminae</div>
-
-        <!--Nav-links-->
-  <ul class="hidden md:flex items-center gap-8">
-       <li>
-          <a href="index.html" class="text-md text-gray-800 border-b-2 border-gray-800 pb-0.5">Home</a>
-       </li>
-       <li>
-          <a href="listings.html" class="relative group text-md text-gray-800 pb-0.5">
-         Listings
-         <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 ease-in-out group-hover:w-full"></span>
-          </a>
-       </li>
-       <li>
-          <a href="about.html" class="relative group text-md text-gray-800 pb-0.5">
-         About Us
-         <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 ease-in-out group-hover:w-full"></span>
-          </a>
-       </li>
-   </ul>
-
-        <!--CTA Button-->
+        <div class="text-3xl font-bold text-gray-900 tracking-wider uppercase" id="luminae-logo">Luminae</div>
+        <ul class="hidden md:flex items-center gap-8">
+            <li><a href="index.html" class="text-md text-gray-800 border-b-2 border-gray-800 pb-0.5">Home</a></li>
+            <li>
+                <a href="listings.html" class="relative group text-md text-gray-800 pb-0.5">Listings
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 ease-in-out group-hover:w-full"></span>
+                </a>
+            </li>
+            <li>
+                <a href="about.html" class="relative group text-md text-gray-800 pb-0.5">About Us
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 ease-in-out group-hover:w-full"></span>
+                </a>
+            </li>
+        </ul>
         <a href="contact.html" id="navbtn" class="md:flex bg-gray-900 text-white text-sm py-3 px-5 rounded-lg hover:bg-gray-700 transition">Contact Us</a>
-
         <button id="menuBtn" class="flex md:hidden cursor-pointer p-2">
             <svg id="hamburgerIcon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h10M4 18h16"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h10M4 18h16"/>
             </svg>
         </button>
-
-         <div id="mobileMenu" class="hidden absolute top-full left-0 right-0 bg-white shadow-lg px-8 py-6 flex-col gap-6 z-50">
-             <a href="index.html" class="relative group w-fit text-sm text-gray-800 pb-0.5">Home<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 ease-in-out group-hover:w-full"></span></a>
-             <a href="listings.html" class="relative group w-fit text-sm text-gray-800 pb-0.5">Listings<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 ease-in-out group-hover:w-full"></span></a>
-             <a href="about.html" class="relative group w-fit text-sm text-gray-800 pb-0.5">About Us<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 ease-in-out group-hover:w-full"></span></a>
-             <a href="contact.html" class="bg-gray-900 text-white text-sm py-3 px-5 w-fit rounded-lg hover:bg-gray-700 transition">Contact Us</a>
-         </div>
+        <div id="mobileMenu" class="hidden absolute top-full left-0 right-0 bg-white shadow-lg px-8 py-6 flex-col gap-6 z-50">
+            <a href="index.html" class="relative group w-fit text-sm text-gray-800 pb-0.5">Home<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 ease-in-out group-hover:w-full"></span></a>
+            <a href="listings.html" class="relative group w-fit text-sm text-gray-800 pb-0.5">Listings<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 ease-in-out group-hover:w-full"></span></a>
+            <a href="about.html" class="relative group w-fit text-sm text-gray-800 pb-0.5">About Us<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 ease-in-out group-hover:w-full"></span></a>
+            <a href="contact.html" class="bg-gray-900 text-white text-sm py-3 px-5 w-fit rounded-lg hover:bg-gray-700 transition">Contact Us</a>
+        </div>
     </nav>
-             
 
+    <section class="relative w-full h-screen flex flex-col items-center justify-center">
+        <img src="assets/vangel-dimo-qFbauOaA9UY-unsplash.jpg" class="absolute inset-0 w-full h-full object-cover" alt="">
+        <div class="absolute inset-0 bg-black/60"></div>
+        <div class="relative z-10 text-white text-center w-full px-6">
+            <h1 class="text-5xl md:text-5xl font-bold leading-tight mb-6">Find Your Architectural Masterpiece.</h1>
 
-
-  <section class="relative w-full h-screen flex flex-col items-center justify-center"> 
-
-  <!-- Background Image -->
-  <img src="assets/vangel-dimo-qFbauOaA9UY-unsplash.jpg" 
-       class="absolute inset-0 w-full h-full object-cover" alt="">
-
-  <!-- Dark overlay -->
-  <div class="absolute inset-0 bg-black/60"></div>
-
-  <!-- Text + Search Bar together -->
-  <div class="relative items-center z-10 text-white text-center w-full px-8">
-    
-    <!-- Heading -->
-    <h1 class="text-5xl pl-8 font-bold leading-tight mb-6 items-center">
-      Find Your Architectural <br> Masterpiece.
-    </h1>
-
-    <!-- Search Bar -->
-    <div class="flex items-center text-center bg-white rounded-sm overflow-hidden shadow-lg max-w-lg mx-auto">
-      
-      <!-- Location -->
-      <div class="flex items-center gap-2 px-4 py-3 border-r border-gray-200 flex-1">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2C8.686 2 6 4.686 6 8c0 5.25 6 13 6 13s6-7.75 6-13c0-3.314-2.686-6-6-6z"/>
-        </svg>
-        <input id="search-input" type="text" placeholder="Location" class="outline-none text-sm text-gray-900 w-full">
-      </div>
-
-      <!-- Property Type -->
-      <div class="flex items-center gap-2 px-4 py-3 border-r border-gray-200 flex-1">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9.75L12 3l9 6.75V21H3V9.75z"/>
-        </svg>
-        <select class="outline-none text-sm text-gray-500 w-full bg-transparent cursor-pointer">
-          <option>Property Type</option>
-          <option>House</option>
-          <option>Apartment</option>
-          <option>Villa</option>
-        </select>
-      </div>
-
-      <!-- Search Button -->
-      <button id="hero-search-btn" class="flex items-center gap-2 bg-gray-900 hover:bg-indigo-700 text-white text-sm px-4 py-4 transition duration-300">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/>
-        </svg>
-        Search
-      </button>
-
-    </div>
-  </div>
-
-</section>
-
-<section class="px-8 py-16 bg-gray-50" id="featured">
-
-      <span class="inline-block bg-orange-100 text-orange-500 text-xs font-medium px-3 py-1 rounded-full mb-3">
-        LUXURY COLLECTION
-      </span>
-
-      <div class="flex justify-between">
-          <h2 class="text-3xl font-bold text-gray-900">Featured Listings</h2>
-          <a href="listings.html" class="text-sm text-gray-700 hover:text-indigo-600 transition duration-300 flex items-center gap-1 mt-2 ">
-           View All Listings →
-          </a>
-      </div>
-
-      <!-- Grid Card-->
-       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10" id="cards-grid">
-
-        <!--Card 1-->
-        <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group">
-         <!-- Image -->
-       <div class="relative overflow-hidden">
-           <img src="assets/frames-for-your-heart-2d4lAQAlbDA-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
-           <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">
-             For Sale
-           </span>
+            <div id="hero-search-bar">
+                <div class="search-field">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2C8.686 2 6 4.686 6 8c0 5.25 6 13 6 13s6-7.75 6-13c0-3.314-2.686-6-6-6z"/>
+                    </svg>
+                    <input type="text" placeholder="Location">
+                </div>
+                <div class="search-field">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9.75L12 3l9 6.75V21H3V9.75z"/>
+                    </svg>
+                    <select>
+                        <option>Property Type</option>
+                        <option>House</option>
+                        <option>Apartment</option>
+                        <option>Villa</option>
+                    </select>
+                </div>
+                <button id="hero-search-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z"/>
+                    </svg>
+                    Search
+                </button>
+            </div>
         </div>
-         <!-- Info -->
-       <div class="p-5">
-          <h3 class="text-xl font-bold text-gray-900 mb-1">$4,250,000</h3>
-          <p class="text-sm text-gray-400 mb-4">1240 Bel Air Rd, Los Angeles, CA</p>
-          <div class="h-px bg-gray-200 mb-4"></div>
-       <div class="flex items-center gap-4 text-xs text-gray-500">
-          <span class="flex items-center gap-1.5">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/>
-          </svg>
-          4 <span class="hidden md:hidden lg:flex">Bed</span>
-        </span>
-        <span class="flex items-center gap-1.5">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/>
-          </svg>
-          3 <span class="hidden md:hidden lg:flex">Bath</span>
-        </span>
-        <span class="flex items-center gap-1.5">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/>
-          </svg>
-          3,850 <span class="hidden md:hidden lg:flex">sqft</span>
-        </span>
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <!--Card 2-->
-  <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group">
-         <!-- Image -->
-       <div class="relative overflow-hidden">
-           <img src="assets/point3d-commercial-imaging-ltd--45_-1tND3k-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
-           <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">
-             For Sale
-           </span>
+    <section class="px-8 py-16 bg-gray-50" id="featured">
+        <span class="inline-block bg-orange-100 text-orange-500 text-xs font-medium px-3 py-1 rounded-full mb-3">LUXURY COLLECTION</span>
+        <div class="flex justify-between">
+            <h2 class="text-3xl font-bold text-gray-900">Featured Listings</h2>
+            <a href="listings.html" class="text-sm text-gray-700 hover:text-indigo-600 transition duration-300 flex items-center gap-1 mt-2">View All Listings →</a>
         </div>
-         <!-- Info -->
-       <div class="p-5">
-          <h3 class="text-xl font-bold text-gray-900 mb-1">$2,890,000</h3>
-          <p class="text-sm text-gray-400 mb-4">1888 Skyline Drive, Austin, TX</p>
-          <div class="h-px bg-gray-200 mb-4"></div>
-       <div class="flex items-center gap-4 text-xs text-gray-500">
-          <span class="flex items-center gap-1.5">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/>
-          </svg>
-          3 <span class="hidden md:hidden lg:flex">Bed</span>
-        </span>
-        <span class="flex items-center gap-1.5">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/>
-          </svg>
-          2 <span class="hidden md:hidden lg:flex">Bath</span>
-        </span>
-        <span class="flex items-center gap-1.5">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/>
-          </svg>
-          2,400 <span class="hidden md:hidden lg:flex">sqft</span>
-        </span>
-      </div>
-    </div>
-  </div>
 
-  <!--Card 3-->
-  <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group">
-         <!-- Image -->
-       <div class="relative overflow-hidden">
-           <img src="assets/point3d-commercial-imaging-ltd-X_JXnSBKOO4-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
-           <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">
-             For Sale
-           </span>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10" id="cards-grid">
+
+            <!--Card 1-->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group card-animate">
+                <div class="relative overflow-hidden">
+                    <img src="assets/frames-for-your-heart-2d4lAQAlbDA-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
+                    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">$4,250,000</h3>
+                    <p class="text-sm text-gray-400 mb-4">1240 Bel Air Rd, Los Angeles, CA</p>
+                    <div class="h-px bg-gray-200 mb-4"></div>
+                    <div class="flex items-center gap-4 text-xs text-gray-500">
+                        <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>4 <span class="hidden lg:flex">Bed</span></span>
+                        <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>3 <span class="hidden lg:flex">Bath</span></span>
+                        <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>3,850 <span class="hidden lg:flex">sqft</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 2-->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group card-animate">
+                <div class="relative overflow-hidden">
+                    <img src="assets/point3d-commercial-imaging-ltd--45_-1tND3k-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
+                    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">$2,890,000</h3>
+                    <p class="text-sm text-gray-400 mb-4">1888 Skyline Drive, Austin, TX</p>
+                    <div class="h-px bg-gray-200 mb-4"></div>
+                    <div class="flex items-center gap-4 text-xs text-gray-500">
+                        <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>3 <span class="hidden lg:flex">Bed</span></span>
+                        <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>2 <span class="hidden lg:flex">Bath</span></span>
+                        <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>2,400 <span class="hidden lg:flex">sqft</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 3-->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group card-animate">
+                <div class="relative overflow-hidden">
+                    <img src="assets/point3d-commercial-imaging-ltd-X_JXnSBKOO4-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
+                    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">$2,890,000</h3>
+                    <p class="text-sm text-gray-400 mb-4">1888 Skyline Drive, Austin, TX</p>
+                    <div class="h-px bg-gray-200 mb-4"></div>
+                    <div class="flex items-center gap-4 text-xs text-gray-500">
+                        <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>5 <span class="hidden lg:flex">Bed</span></span>
+                        <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>4 <span class="hidden lg:flex">Bath</span></span>
+                        <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>4,200 <span class="hidden lg:flex">sqft</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 4-->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group card-animate">
+                <div class="relative overflow-hidden">
+                    <img src="assets/webaliser-_TPTXZd9mOo-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
+                    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">$5,790,000</h3>
+                    <p class="text-sm text-gray-400 mb-4">1688 penance Drive, taxpark</p>
+                    <div class="h-px bg-gray-200 mb-4"></div>
+                    <div class="flex items-center gap-4 text-xs text-gray-500">
+                        <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>6 <span class="hidden lg:flex">Bed</span></span>
+                        <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>5 <span class="hidden lg:flex">Bath</span></span>
+                        <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>5,400 <span class="hidden lg:flex">sqft</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 5-->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group card-animate">
+                <div class="relative overflow-hidden">
+                    <img src="assets/roger-starnes-sr-lPHkueOsFJ8-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
+                    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">$3,560,000</h3>
+                    <p class="text-sm text-gray-400 mb-4">1800 danstrout, miami</p>
+                    <div class="h-px bg-gray-200 mb-4"></div>
+                    <div class="flex items-center gap-4 text-xs text-gray-500">
+                        <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>5 <span class="hidden lg:flex">Bed</span></span>
+                        <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>4 <span class="hidden lg:flex">Bath</span></span>
+                        <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>3,600 <span class="hidden lg:flex">sqft</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!--Card 6-->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group card-animate">
+                <div class="relative overflow-hidden">
+                    <img src="assets/wes-fischer-g39p1kDjvSY-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
+                    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">$5,490,000</h3>
+                    <p class="text-sm text-gray-400 mb-4">1920 straitman, TX</p>
+                    <div class="h-px bg-gray-200 mb-4"></div>
+                    <div class="flex items-center gap-4 text-xs text-gray-500">
+                        <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>6 <span class="hidden lg:flex">Bed</span></span>
+                        <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>5 <span class="hidden lg:flex">Bath</span></span>
+                        <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>6,200 <span class="hidden lg:flex">sqft</span></span>
+                    </div>
+                </div>
+            </div>
+
         </div>
-         <!-- Info -->
-       <div class="p-5">
-          <h3 class="text-xl font-bold text-gray-900 mb-1">$2,890,000</h3>
-          <p class="text-sm text-gray-400 mb-4">1888 Skyline Drive, Austin, TX</p>
-          <div class="h-px bg-gray-200 mb-4"></div>
-       <div class="flex items-center gap-4 text-xs text-gray-500">
-          <span class="flex items-center gap-1.5">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/>
-          </svg>
-          5 <span class="hidden md:hidden lg:flex">Bed</span>
-        </span>
-        <span class="flex items-center gap-1.5">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/>
-          </svg>
-          4 <span class="hidden md:hidden lg:flex">Bath</span>
-        </span>
-        <span class="flex items-center gap-1.5">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/>
-          </svg>
-          4,200 <span class="hidden md:hidden lg:flex">sqft</span>
-        </span>
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <!--Card 4-->
-    <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group">
-         <!-- Image -->
-       <div class="relative overflow-hidden">
-           <img src="assets/webaliser-_TPTXZd9mOo-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
-           <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">
-             For Sale
-           </span>
+    <section class="bg-[#1B263B] px-5 py-20" id="list-property">
+        <div class="flex flex-col items-center justify-between max-w-6xl mx-auto gap-12 md:flex-row">
+            <div class="flex-1 text-center md:text-left">
+                <h2 class="text-white text-5xl font-bold mb-4">List Your Property</h2>
+                <p class="text-gray-300 text-mb leading-relaxed mb-4">Leverage our global and data-driven insights to find the <br> perfect buyer for your architectural masterpiece</p>
+                <a href="contact.html" class="inline-block bg-white text-black text-sm px-6 py-3 hover:bg-white hover:text-gray-900 transition duration-300">Start a Consultation</a>
+            </div>
+            <div class="flex-1 flex justify-end">
+                <img src="assets/sean-pollock-PhYq704ffdA-unsplash.jpg" class="w-80 rounded-sm shadow-2xl object-cover" alt="">
+            </div>
         </div>
-         <!-- Info -->
-       <div class="p-5">
-          <h3 class="text-xl font-bold text-gray-900 mb-1">$5,790,000</h3>
-          <p class="text-sm text-gray-400 mb-4">1688 penance Drive, taxpark</p>
-          <div class="h-px bg-gray-200 mb-4"></div>
-       <div class="flex items-center gap-4 text-xs text-gray-500">
-          <span class="flex items-center gap-1.5">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/>
-          </svg>
-          6 <span class="hidden md:hidden lg:flex">Bed</span>
-        </span>
-        <span class="flex items-center gap-1.5">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/>
-          </svg>
-          5 <span class="hidden md:hidden lg:flex">Bath</span>
-        </span>
-        <span class="flex items-center gap-1.5">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/>
-          </svg>
-          5,400 <span class="hidden md:hidden lg:flex">sqft</span>
-        </span>
-      </div>
-    </div>
-  </div>
+    </section>
 
-  <!--Card 5-->
-   <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group">
-         <!-- Image -->
-       <div class="relative overflow-hidden">
-           <img src="assets/roger-starnes-sr-lPHkueOsFJ8-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
-           <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">
-             For Sale
-           </span>
+    <footer class="bg-[#e5e7eb] text-gray-800 px-8 py-12 md:px-16" id="footer">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
+            <div class="space-y-4">
+                <h2 class="text-xl text-gray-900 font-bold tracking-wider uppercase">Estate</h2>
+                <p class="text-sm leading-relaxed text-gray-600 max-w-xs">Curating the world's most exceptional properties with professional precision and architectural integrity.</p>
+            </div>
+            <div class="space-y-4">
+                <h3 class="text-xs text-gray-900 font-bold tracking-widest uppercase">Explore</h3>
+                <ul class="space-y-2 text-sm text-gray-600 underline underline-offset-4 decoration-gray-400 hover:decoration-gray-800">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="listings.html">Listings</a></li>
+                </ul>
+            </div>
+            <div class="space-y-4">
+                <h3 class="text-xs text-gray-900 font-bold tracking-widest uppercase">Support</h3>
+                <ul class="space-y-2 text-sm text-gray-600 underline underline-offset-4 decoration-gray-400 hover:decoration-gray-800">
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="space-y-4">
+                <h3 class="text-xs text-gray-900 font-bold tracking-widest uppercase">Stay Updated</h3>
+                <div class="flex items-stretch">
+                    <input type="email" placeholder="Email address" class="w-full px-4 py-2 bg-white border border-gray-300 focus:outline-none rounded-l-md text-sm">
+                    <button class="bg-[#0f172a] text-white px-5 py-2 text-sm font-medium rounded-r-md hover:bg-gray-800 transition">Join</button>
+                </div>
+            </div>
         </div>
-         <!-- Info -->
-       <div class="p-5">
-          <h3 class="text-xl font-bold text-gray-900 mb-1">$3,560,000</h3>
-          <p class="text-sm text-gray-400 mb-4">1800 danstrout, miami</p>
-          <div class="h-px bg-gray-200 mb-4"></div>
-       <div class="flex items-center gap-4 text-xs text-gray-500">
-          <span class="flex items-center gap-1.5">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/>
-          </svg>
-          5 <span class="hidden md:hidden lg:flex">Bed</span>
-        </span>
-        <span class="flex items-center gap-1.5">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/>
-          </svg>
-          4 <span class="hidden md:hidden lg:flex">Bath</span>
-        </span>
-        <span class="flex items-center gap-1.5">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/>
-          </svg>
-          3,600 <span class="hidden md:hidden lg:flex">sqft</span>
-        </span>
-      </div>
-    </div>
-  </div>
-
-  <!--Card 6-->
-   <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group">
-         <!-- Image -->
-       <div class="relative overflow-hidden">
-           <img src="assets/wes-fischer-g39p1kDjvSY-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
-           <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">
-             For Sale
-           </span>
+        <div class="max-w-7xl mx-auto border-t border-gray-300 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+            <p>© 2024 Estate Luxury Real Estate. All rights reserved.</p>
+            <a href="#" class="underline underline-offset-2">Terms of Service</a>
         </div>
-         <!-- Info -->
-       <div class="p-5">
-          <h3 class="text-xl font-bold text-gray-900 mb-1">$5,490,000</h3>
-          <p class="text-sm text-gray-400 mb-4">1920 straitman, TX</p>
-          <div class="h-px bg-gray-200 mb-4"></div>
-       <div class="flex items-center gap-4 text-xs text-gray-500">
-          <span class="flex items-center gap-1.5">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/>
-          </svg>
-          6 <span class="hidden md:hidden lg:flex">Bed</span>
-        </span>
-        <span class="flex items-center gap-1.5">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/>
-          </svg>
-          5 <span class="hidden md:hidden lg:flex">Bath</span>
-        </span>
-        <span class="flex items-center gap-1.5">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/>
-          </svg>
-          6,200 <span class="hidden md:hidden lg:flex">sqft</span>
-        </span>
-      </div>
-    </div>
-  </div>
-</div>
+    </footer>
 
-</section>
-
-<section class="bg-[#1B263B] px-5 py-20" id="list-property">
-    <div class="flex flex-col items-center justify-between max-w-6xl mx-auto gap-12 md:flex-row">
-
-        <!--left content-->
-        <div class="flex-1 text-center md:text-left">
-           <h2 class="text-white text-5xl font-bold mb-4">List Your Property</h2>
-           <p class="text-gray-300 text-mb leading-relaxed mb-4">Leverage our global and data-driven insights to find the <br> perfect buyer for your architectural masterpiece</p>
-           <a href="contact.html" class="inline-block bg-white text-black text-sm px-6 py-3 hover:bg-white hover:text-gray-900 transition duration-300">Start a Consultation</a>
-        </div>
-         
-        <!--Right content-->
-        <div class="flex-1 flex justify-end">
-            <img src="assets/sean-pollock-PhYq704ffdA-unsplash.jpg" class="w-80 rounded-sm shadow-2xl object-cover" alt="">
-        </div>
-        
-    </div>
-</section>
-
-<!--Footer section-->
- <footer class="bg-[#e5e7eb] text-gray-800 px-8 py-12 md:px-16" id="footer">
-  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
-    
-    <div class="space-y-4">
-      <h2 class="text-xl text-gray-900 font-bold tracking-wider uppercase">Estate</h2>
-      <p class="text-sm leading-relaxed text-gray-600 max-w-xs">
-        Curating the world's most exceptional properties with professional precision and architectural integrity.
-      </p>
-    </div>
-
-    <div class="space-y-4">
-      <h3 class="text-xs text-gray-900 font-bold tracking-widest uppercase">Explore</h3>
-      <ul class="space-y-2 text-sm text-gray-600 underline underline-offset-4 decoration-gray-400 hover:decoration-gray-800">
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="listings.html">Listings</a></li>
-      </ul>
-    </div>
-
-    <div class="space-y-4">
-      <h3 class="text-xs text-gray-900 font-bold tracking-widest uppercase">Support</h3>
-      <ul class="space-y-2 text-sm text-gray-600 underline underline-offset-4 decoration-gray-400 hover:decoration-gray-800">
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-      </ul>
-    </div>
-
-    <div class="space-y-4">
-      <h3 class="text-xs text-gray-900 font-bold tracking-widest uppercase">Stay Updated</h3>
-      <div class="flex items-stretch">
-        <input type="email" placeholder="Email address" class="w-full px-4 py-2 bg-white border border-gray-300 focus:outline-none rounded-l-md text-sm">
-        <button class="bg-[#0f172a] text-white px-5 py-2 text-sm font-medium rounded-r-md hover:bg-gray-800 transition">
-          Join
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="max-w-7xl mx-auto border-t border-gray-300 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-    <p>© 2024 Estate Luxury Real Estate. All rights reserved.</p>
-    <a href="#" class="underline underline-offset-2">Terms of Service</a>
-  </div>
-</footer>
-     
-  
-  <script src="navbar.js"></script>
-  <script src="home.js"></script>
+    <script src="navbar.js"></script>
+    <script src="home.js"></script>
 </body>
 </html>

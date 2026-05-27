@@ -15,6 +15,12 @@ if (heroSearchBtn) {
   };
 }
 
+const logoHome = document.getElementById("#luminae-logo");
+
+logoHome.addEventListener('click', ()=>{
+   
+})
+
 document.addEventListener("DOMContentLoaded", () => {
 
   // Hero
@@ -34,27 +40,32 @@ document.addEventListener("DOMContentLoaded", () => {
     ease: "power3.out"
   });
 
-  // Featured listing
-  gsap.from("#featured span, #featured h2, #featured a", {
-    scrollTrigger: { trigger: "#featured", start: "top 80%" },
-    opacity: 0,
-    y: 30,
-    duration: 0.8,
-    stagger: 0.2,
-    ease: "power2.out"
-  });
+  gsap.from("#featured", {
+  scrollTrigger: {
+    trigger: "#featured",
+    start: "top 80%"
+  },
+  opacity: 0,
+  y: 30,
+  duration: 0.8,
+  ease: "power2.out"
+});
 
-  // Cards
-  gsap.utils.toArray("#cards-grid .bg-white").forEach((card, i) => {
-    gsap.from(card, {
-      scrollTrigger: { trigger: card, start: "top 90%" },
-      opacity: 0,
-      y: 50,
-      duration: 0.8,
-      delay: i * 0.15,
-      ease: "power3.out"
-    });
-  });
+ gsap.from("#cards-grid .bg-white", {
+  scrollTrigger: {
+    trigger: "#cards-grid",
+    start: "top 85%"
+  },
+  opacity: 0,
+  y: 30,
+  duration: 0.6,
+  stagger: {
+    each: 0.1,
+    from: "start"
+  },
+  ease: "power2.out"
+});
+
 
   // List your property
   gsap.from("#list-property h2, #list-property p, #list-property a", {

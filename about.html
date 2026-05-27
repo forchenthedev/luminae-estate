@@ -8,6 +8,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="output.css">
+<!-- 
+    <style>
+       @media screen and (max-width: 768px) {
+         
+           #hero-h1{
+            font-size: 2.3rem;
+           }
+
+       }
+
+    </style> -->
 </head>
 <body class="font-inter">
 
@@ -58,9 +69,9 @@
         <div class="absolute inset-0 bg-black/60"></div>
 
         <div class="relative items-center z-10 text-white text-center w-full px-8">
-            <h1 class="text-5xl pl-8 font-bold leading-tight mb-6 items-center">Curating Architectural Legacies</h1>
-            <p class="text-md text-gray-400 leading-relaxed">Redefining luxury real estate through the lens of timeless design and</p>
-            <p class="text-md text-gray-400 leading-relaxed">uncompromising excellence.</p>
+            <h1 class="text-5xl text-center font-bold leading-tight mb-6" id="hero-h1">Curating Architectural Legacies</h1>
+            <p class="text-md text-gray-200 leading-relaxed">Redefining luxury real estate through the lens of timeless design and</p>
+            <p class="text-md text-gray-200 leading-relaxed">uncompromising excellence.</p>
         </div>
     </section>
 
@@ -141,11 +152,11 @@
     </div>
   </div>
 
-  <div class="grid grid-cols-3 gap-6 mt-10 mb-12">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 mb-12">
 
   <!-- Card 1 -->
   <div class="flex flex-col cursor-pointer group">
-    <div class="overflow-hidden rounded-sm" style="height: 550px;">
+    <div class="overflow-hidden rounded-sm h-48 md:h-137.5">
       <img
       src="assets/michael-guertin-6sYpkD6ifu0-unsplash.jpg"
       alt="Agent 1"
@@ -159,7 +170,7 @@
 
   <!-- Card 2 -->
   <div class="flex flex-col group cursor-pointer">
-    <div class="overflow-hidden  rounded-sm" style="height: 550px;">
+    <div class="overflow-hidden  rounded-sm h-48 md:h-137.5" >
       <img
       src="assets/darceystone-photography-KmRM8RkL2ZI-unsplash.jpg"
       alt="Agent 2"
@@ -174,7 +185,7 @@
 
   <!-- Card 3 -->
   <div class="flex flex-col cursor-pointer group">
-    <div class="overflow-hidden rounded-sm" style="height: 550px;">
+    <div class="overflow-hidden rounded-sm h-48 md:h-137.5">
         <img
       src="assets/gruescu-ovidiu-hlU9Pg588ig-unsplash.jpg"
       alt="Agent 3"

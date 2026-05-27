@@ -8,6 +8,59 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="output.css">
+    <style>
+      @media (max-width: 768px) {
+        .contact-grid {
+          grid-template-columns: 1fr !important;
+          gap: 48px !important;
+        }
+
+        .contact-header h2 {
+          font-size: 1.875rem !important;
+        }
+
+        .contact-header p {
+          font-size: 0.8125rem !important;
+        }
+
+        .contact-header p br {
+          display: none;
+        }
+
+        .form-two-col {
+          grid-template-columns: 1fr !important;
+          gap: 24px !important;
+        }
+
+        .contact-section {
+          padding: 48px 16px !important;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .contact-section {
+          padding: 32px 12px !important;
+        }
+
+        .contact-header {
+          margin-bottom: 40px !important;
+        }
+
+        .contact-header h2 {
+          font-size: 1.5rem !important;
+          margin-bottom: 12px !important;
+        }
+
+        .form-heading {
+          font-size: 1.25rem !important;
+          margin-bottom: 32px !important;
+        }
+
+        .contact-grid {
+          gap: 40px !important;
+        }
+      }
+    </style>
 </head>
 <body class="font-inter">
     <nav class="flex items-center justify-between px-8 py-6 sticky top-0 z-50 bg-white" id="navbar">
@@ -51,10 +104,10 @@
          </div>
     </nav>
 
-    <section style="background:#f3f4f6; padding: 80px 24px;" id="contact-section">
+    <section style="background:#f3f4f6; padding: 80px 24px; overflow: hidden;" class="contact-section" id="contact-section">
 
   <!-- Header -->
-  <div style="text-align:center; margin-bottom: 64px;">
+  <div style="text-align:center; margin-bottom: 64px;" class="contact-header">
     <h2 style="font-size:3rem; font-weight:800; color:#111827; margin-bottom:16px;">Connect with Excellence</h2>
     <p style="color:#6b7280; font-size:0.875rem; line-height:1.75;">
       Whether you're seeking a private estate or a sophisticated urban residence,<br/>
@@ -63,14 +116,14 @@
   </div>
 
   <!-- 2 column layout -->
-  <div style="max-width:900px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start;">
+  <div style="max-width:900px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start;" class="contact-grid">
 
     <!-- Left: Form -->
     <div>
-      <h3 style="font-size:1.5rem; font-weight:700; color:#111827; margin-bottom:40px;">Send an Inquiry</h3>
+      <h3 style="font-size:1.5rem; font-weight:700; color:#111827; margin-bottom:40px;" class="form-heading">Send an Inquiry</h3>
 
       <!-- First + Last Name -->
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-bottom:32px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-bottom:32px;" class="form-two-col">
         <div>
           <label style="display:block; font-size:10px; font-weight:700; letter-spacing:0.15em; color:#9ca3af; text-transform:uppercase; margin-bottom:12px;">First Name</label>
           <input type="text" placeholder="Enter your first name" style="width:100%; background:transparent; border:none; border-bottom:1px solid #d1d5db; padding-bottom:12px; font-size:0.875rem; color:#9ca3af; outline:none;"/>
