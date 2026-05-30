@@ -1,5 +1,5 @@
 gsap.registerPlugin(ScrollTrigger);
-
+ 
 const menuBtn = document.querySelector("#menuBtn");
 const mobileMenu = document.querySelector("#mobileMenu");
 const icon = document.querySelector("#hamburgerIcon");

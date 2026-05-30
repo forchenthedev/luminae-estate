@@ -2,7 +2,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 
   // Declare cards first
-  const cards = document.querySelectorAll("#cards-grid .bg-white");
+  const cards = document.querySelectorAll("#listings-grid .bg-white");
 
   // Read URL query and filter on load - plain CSS, no GSAP
   const urlParams = new URLSearchParams(window.location.search);
@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 
   if (locationQuery) {
   const query = locationQuery.toLowerCase();
-  document.querySelectorAll("#listings-grid .bg-white").forEach(card => {
+  document.querySelectorAll("#listings-grid .listing-card").forEach(card => {
     const locationEl = card.querySelector("p.text-gray-400");
     if (!locationEl) return;
     const location = locationEl.textContent.toLowerCase();

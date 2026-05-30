@@ -8,504 +8,714 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="output.css">
+    <style>
+        .card-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 20px;
+        }
+        .card-details.open {
+            max-height: 300px;
+            padding: 16px 20px;
+        }
+
+        .listing-card {
+            align-self: start;
+        }
+
+        #filter-btn {
+            justify-content: center;
+        }
+        .expand-btn.rotated svg {
+            transform: rotate(180deg);
+            transition: transform 0.3s ease;
+        }
+
+        .expand-btn {
+            margin-top: 12px;
+        }
+        .expand-btn svg {
+            transition: transform 0.3s ease;
+        }
+    </style>
 </head>
 <body class="font-inter">
 
     <nav class="flex items-center justify-between px-8 py-6 sticky top-0 z-50 bg-white" id="navbar">
-
-        <!--Logo-->
-        <div class="text-3xl font-bold text-gray-900 tracking-wider uppercase">Luminae</div>
-
-        <!--Nav-links-->
-  <ul class="hidden md:flex items-center gap-8">
-       <li>
-          <a href="index.html" class="text-md text-gray-800 border-b-2 border-gray-800 pb-0.5">Home</a>
-       </li>
-       <li>
-          <a href="listings.html" class="relative group text-md text-gray-800 pb-0.5">
-         Listings
-         <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 ease-in-out group-hover:w-full"></span>
-          </a>
-       </li>
-       <li>
-          <a href="about.html" class="relative group text-md text-gray-800 pb-0.5">
-         About Us
-         <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 ease-in-out group-hover:w-full"></span>
-          </a>
-       </li>
-   </ul>
-
-        <!--CTA Button-->
+        <a href="index.html" class="text-3xl font-bold text-gray-900 tracking-wider uppercase" id="luminae-logo">Luminae</a>
+        <ul class="hidden md:flex items-center gap-8">
+            <li><a href="index.html" class="text-md text-gray-800 border-b-2 border-gray-800 pb-0.5">Home</a></li>
+            <li>
+                <a href="listings.html" class="relative group text-md text-gray-800 pb-0.5">Listings
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 ease-in-out group-hover:w-full"></span>
+                </a>
+            </li>
+            <li>
+                <a href="about.html" class="relative group text-md text-gray-800 pb-0.5">About Us
+                    <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 ease-in-out group-hover:w-full"></span>
+                </a>
+            </li>
+        </ul>
         <a href="contact.html" class="hidden md:flex bg-gray-900 text-white text-sm py-3 px-5 rounded-lg hover:bg-gray-700 transition" id="navbtn">Contact Us</a>
-
         <button id="menuBtn" class="flex md:hidden cursor-pointer p-2">
             <svg id="hamburgerIcon" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h10M4 18h16"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h10M4 18h16"/>
             </svg>
         </button>
-
-         <div id="mobileMenu" class="hidden absolute top-full left-0 right-0 bg-white shadow-lg px-8 py-6 flex-col gap-6 z-50">
-             <a href="index.html" class="relative group w-fit text-sm text-gray-800 pb-0.5">Home<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 ease-in-out group-hover:w-full"></span></a>
-             <a href="listings.html" class="relative group w-fit text-sm text-gray-800 pb-0.5">Listings<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 ease-in-out group-hover:w-full"></span></a>
-             <a href="about.html" class="relative group w-fit text-sm text-gray-800 pb-0.5">About Us<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 ease-in-out group-hover:w-full"></span></a>
-             <a href="contact.html" class="bg-gray-900 text-white text-sm py-3 px-5 w-fit rounded-lg hover:bg-gray-700 transition">Contact Us</a>
-         </div>
+        <div id="mobileMenu" class="hidden absolute top-full left-0 right-0 bg-white shadow-lg px-8 py-6 flex-col gap-6 z-50">
+            <a href="index.html" class="relative group w-fit text-sm text-gray-800 pb-0.5">Home<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 ease-in-out group-hover:w-full"></span></a>
+            <a href="listings.html" class="relative group w-fit text-sm text-gray-800 pb-0.5">Listings<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 ease-in-out group-hover:w-full"></span></a>
+            <a href="about.html" class="relative group w-fit text-sm text-gray-800 pb-0.5">About Us<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 transition-all duration-300 ease-in-out group-hover:w-full"></span></a>
+            <a href="contact.html" class="bg-gray-900 text-white text-sm py-3 px-5 w-fit rounded-lg hover:bg-gray-700 transition">Contact Us</a>
+        </div>
     </nav>
 
     <section class="bg-[#F3F4F5] w-full px-8 py-14" id="listings-section">
-          
+
         <div class="flex flex-col gap-2 mb-6">
             <h1 class="font-bold text-gray-900 text-5xl">Curated Residence</h1>
             <p class="text-md text-gray-500 max-w-md leading-normal">Discover an exclusive collection of high-end architectural masterpiece <br> selected for their precision in design and unparaellel quality.</p>
         </div>
 
-       <div class="bg-white border border-gray-200 p-5 flex flex-col md:flex-row gap-4 items-end mt-6">
-  
-  <!-- Property Type -->
-  <div class=" relative w-full md:flex-1">
-    <label class="block text-[13px] font-semibold tracking-widest text-gray-400 uppercase mb-1.5">Property Type</label>
-    <div class="relative">
-      <select class="w-full appearance-none border border-gray-200 px-3 py-3 text-sm text-gray-800 bg-white pr-8 focus:outline-none focus:ring-2 focus:ring-gray-900" id="filter-type">
-        <option>All Properties</option>
-        <option>Villa</option>
-        <option>Penthouse</option>
-        <option>Beachfront</option>
-      </select>
-      <svg class="w-4 h-4 absolute right-2.5 bottom-3.5 text-gray-400 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-      </svg>
-    </div>
-  </div>
+        <div class="bg-white border border-gray-200 p-5 flex flex-col md:flex-row gap-4 items-end mt-6">
+            <div class="relative w-full md:flex-1">
+                <label class="block text-[13px] font-semibold tracking-widest text-gray-400 uppercase mb-1.5">Property Type</label>
+                <div class="relative">
+                    <select class="w-full appearance-none border border-gray-200 px-3 py-3 text-sm text-gray-800 bg-white pr-8 focus:outline-none focus:ring-2 focus:ring-gray-900" id="filter-type">
+                        <option>All Properties</option>
+                        <option>Villa</option>
+                        <option>Penthouse</option>
+                        <option>Beachfront</option>
+                    </select>
+                    <svg class="w-4 h-4 absolute right-2.5 bottom-3.5 text-gray-400 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+            </div>
+            <div class="relative w-full md:flex-1">
+                <label class="block text-[13px] font-semibold tracking-widest text-gray-400 uppercase mb-1.5">Price Range</label>
+                <div class="relative">
+                    <select class="w-full appearance-none border border-gray-200 px-3 py-3 text-sm text-gray-800 bg-white pr-8 focus:outline-none focus:ring-2 focus:ring-gray-900" id="filter-price">
+                        <option>$1M - $5M</option>
+                        <option>$5M - $10M</option>
+                        <option>$10M+</option>
+                    </select>
+                    <svg class="w-4 h-4 absolute right-2.5 bottom-3.5 text-gray-400 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+            </div>
+            <div class="relative w-full md:flex-1">
+                <label class="block text-[13px] font-semibold tracking-widest text-gray-400 uppercase mb-1.5">Bedrooms</label>
+                <div class="relative">
+                    <select class="w-full appearance-none border border-gray-200 px-3 py-3 text-sm text-gray-800 bg-white pr-8 focus:outline-none focus:ring-2 focus:ring-gray-900" id="filter-beds">
+                        <option>2+ Bedrooms</option>
+                        <option>3+ Bedrooms</option>
+                        <option>4+ Bedrooms</option>
+                        <option>5+ Bedrooms</option>
+                    </select>
+                    <svg class="w-4 h-4 absolute right-2.5 bottom-3.5 text-gray-400 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+            </div>
+            <button class="bg-gray-900 text-white text-sm font-medium px-6 py-3 flex items-center gap-2 hover:bg-gray-700 transition-colors w-full md:w-auto" id="filter-btn">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M21 21l-4.35-4.35"/></svg>
+                Search
+            </button>
+        </div>
 
-  <!-- Price Range -->
-  <div class="relative w-full md:flex-1">
-    <label class="block text-[13px] font-semibold tracking-widest text-gray-400 uppercase mb-1.5">Price Range</label>
-    <div class="relative">
-      <select class="w-full appearance-none border border-gray-200 px-3 py-3 text-sm text-gray-800 bg-white pr-8 focus:outline-none focus:ring-2 focus:ring-gray-900" id="filter-price" id="filter-beds">
-        <option>$1M - $5M</option>
-        <option>$5M - $10M</option>
-        <option>$10M+</option>
-      </select>
-      <svg class="w-4 h-4 absolute right-2.5 bottom-3.5 text-gray-400 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-      </svg>
-    </div>
-  </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10" id="listings-grid">
 
-  <!-- Bedrooms -->
-  <div class="relative w-full md:flex-1">
-    <label class="block text-[13px] font-semibold tracking-widest text-gray-400 uppercase mb-1.5">Bedrooms</label>
-    <div class="relative">
-      <select class="w-full appearance-none border border-gray-200 px-3 py-3 text-sm text-gray-800 bg-white pr-8 focus:outline-none focus:ring-2 focus:ring-gray-900" id="filter-beds">
-        <option>2+ Bedrooms</option>
-        <option>3+ Bedrooms</option>
-        <option>4+ Bedrooms</option>
-        <option>5+ Bedrooms</option>
-      </select>
-      <svg class="w-4 h-4 absolute right-2.5 bottom-3.5 text-gray-400 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-      </svg>
-    </div>
-  </div>
+            <!--Card 1-->
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition duration-300 group listing-card" data-type="villa" data-price="1" data-beds="4">
+                <div class="relative overflow-hidden rounded-t-2xl">
+                    <img src="assets/frames-for-your-heart-2d4lAQAlbDA-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
+                    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">$4,250,000</h3>
+                    <p class="text-sm text-gray-400 mb-4">1240 Bel Air Rd, Los Angeles, CA</p>
+                    <div class="h-px bg-gray-200 mb-4"></div>
+                    <div class="flex flex-col gap-5">
+                        <div class="flex items-center gap-4 text-xs text-gray-500">
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>4 Bed</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>3 Bath</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>3,850 sqft</span>
+                        </div>
+                        <button class="expand-btn bg-gray-900 text-white text-xs px-4 py-2 rounded-lg flex items-center justify-center gap-1.5 hover:bg-gray-700 transition w-full" aria-label="Expand">
+                            View details
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-details border-t border-gray-100">
+                    <p class="text-sm text-gray-500 leading-relaxed mb-3">A stunning architectural villa nestled in the hills of Bel Air with panoramic views of Los Angeles. Features open-plan living, floor-to-ceiling windows, and a infinity pool.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Infinity Pool</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">3-Car Garage</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Home Theatre</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Built 2019</span>
+                    </div>
+                    <a href="contact.html" class="inline-block bg-gray-900 text-white text-xs px-5 py-2.5 rounded-lg hover:bg-gray-700 transition">Enquire Now</a>
+                </div>
+            </div>
 
-  <!-- Search Button -->
-  <button class="bg-gray-900 text-white text-sm font-medium px-6 py-3 flex items-center gap-2 hover:bg-gray-700 transition-colors w-full md:w-auto md:text-center" id="filter-btn">
-    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-      <circle cx="11" cy="11" r="7"/>
-      <path stroke-linecap="round" d="M21 21l-4.35-4.35"/>
-    </svg>
-    Search
-  </button>
+            <!--Card 2-->
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition duration-300 group listing-card" data-type="house" data-price="1" data-beds="3">
+                <div class="relative overflow-hidden rounded-t-2xl">
+                    <img src="assets/point3d-commercial-imaging-ltd--45_-1tND3k-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
+                    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">$2,890,000</h3>
+                    <p class="text-sm text-gray-400 mb-4">1888 Skyline Drive, Austin, TX</p>
+                    <div class="h-px bg-gray-200 mb-4"></div>
+                    <div class="flex flex-col gap-3">
+                        <div class="flex items-center gap-4 text-xs text-gray-500">
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>3 Bed</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>2 Bath</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>2,400 sqft</span>
+                        </div>
+                        <button class="expand-btn bg-gray-900 text-white text-xs px-4 py-2 rounded-lg flex items-center justify-center gap-1.5 hover:bg-gray-700 transition w-full" aria-label="Expand">
+                            View details
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-details border-t border-gray-100">
+                    <p class="text-sm text-gray-500 leading-relaxed mb-3">A modern home perched along Skyline Drive with sweeping hill country views. Features a chef's kitchen, open living spaces, and a resort-style backyard.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Pool</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">2-Car Garage</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Smart Home</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Built 2020</span>
+                    </div>
+                    <a href="contact.html" class="inline-block bg-gray-900 text-white text-xs px-5 py-2.5 rounded-lg hover:bg-gray-700 transition">Enquire Now</a>
+                </div>
+            </div>
 
-</div>
+            <!--Card 3-->
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition duration-300 group listing-card" data-type="house" data-price="1" data-beds="5">
+                <div class="relative overflow-hidden rounded-t-2xl">
+                    <img src="assets/point3d-commercial-imaging-ltd-X_JXnSBKOO4-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
+                    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">$2,890,000</h3>
+                    <p class="text-sm text-gray-400 mb-4">1888 Skyline Drive, Austin, TX</p>
+                    <div class="h-px bg-gray-200 mb-4"></div>
+                    <div class="flex flex-col gap-3">
+                        <div class="flex items-center gap-4 text-xs text-gray-500">
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>5 Bed</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>4 Bath</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>4,200 sqft</span>
+                        </div>
+                        <button class="expand-btn bg-gray-900 text-white text-xs px-4 py-2 rounded-lg flex items-center justify-center gap-1.5 hover:bg-gray-700 transition w-full" aria-label="Expand">
+                            View details
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-details border-t border-gray-100">
+                    <p class="text-sm text-gray-500 leading-relaxed mb-3">Expansive family home with designer finishes throughout. Features a gourmet kitchen, spa-like bathrooms, and a beautifully landscaped backyard with outdoor entertaining space.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Outdoor Kitchen</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Wine Cellar</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Gym</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Built 2018</span>
+                    </div>
+                    <a href="contact.html" class="inline-block bg-gray-900 text-white text-xs px-5 py-2.5 rounded-lg hover:bg-gray-700 transition">Enquire Now</a>
+                </div>
+            </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10" id="listings-grid">
+            <!--Card 4-->
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition duration-300 group listing-card" data-type="villa" data-price="2" data-beds="6">
+                <div class="relative overflow-hidden rounded-t-2xl">
+                    <img src="assets/webaliser-_TPTXZd9mOo-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
+                    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">$5,790,000</h3>
+                    <p class="text-sm text-gray-400 mb-4">1688 penance Drive, taxpark</p>
+                    <div class="h-px bg-gray-200 mb-4"></div>
+                    <div class="flex flex-col gap-3">
+                        <div class="flex items-center gap-4 text-xs text-gray-500">
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>6 Bed</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>5 Bath</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>5,400 sqft</span>
+                        </div>
+                        <button class="expand-btn bg-gray-900 text-white text-xs px-4 py-2 rounded-lg flex items-center justify-center gap-1.5 hover:bg-gray-700 transition w-full" aria-label="Expand">
+                            View details
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-details border-t border-gray-100">
+                    <p class="text-sm text-gray-500 leading-relaxed mb-3">Grand villa with timeless architecture and lush tropical landscaping. The estate features a private guest suite, resort pool, and fully equipped outdoor entertaining pavilion.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Guest Suite</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Resort Pool</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">4-Car Garage</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Built 2017</span>
+                    </div>
+                    <a href="contact.html" class="inline-block bg-gray-900 text-white text-xs px-5 py-2.5 rounded-lg hover:bg-gray-700 transition">Enquire Now</a>
+                </div>
+            </div>
 
-       <!--Card 1-->
-<div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group" data-type="villa" data-price="1" data-beds="4">
-  <div class="relative overflow-hidden">
-    <img src="assets/frames-for-your-heart-2d4lAQAlbDA-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
-    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
-    <div class="card-overlay">
-      <button class="bg-white text-gray-900 text-sm font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition">View Property</button>
-    </div>
-  </div>
-  <div class="p-5">
-    <h3 class="text-xl font-bold text-gray-900 mb-1">$4,250,000</h3>
-    <p class="text-sm text-gray-400 mb-4">1240 Bel Air Rd, Los Angeles, CA</p>
-    <div class="h-px bg-gray-200 mb-4"></div>
-    <div class="flex items-center gap-4 text-xs text-gray-500">
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>4 <span class="hidden lg:flex">Bed</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>3 <span class="hidden lg:flex">Bath</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>3,850 <span class="hidden lg:flex">sqft</span></span>
-    </div>
-  </div>
-</div>
+            <!--Card 5-->
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition duration-300 group listing-card" data-type="house" data-price="1" data-beds="5">
+                <div class="relative overflow-hidden rounded-t-2xl">
+                    <img src="assets/roger-starnes-sr-lPHkueOsFJ8-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
+                    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">$3,560,000</h3>
+                    <p class="text-sm text-gray-400 mb-4">1800 danstrout, miami</p>
+                    <div class="h-px bg-gray-200 mb-4"></div>
+                    <div class="flex flex-col gap-3">
+                        <div class="flex items-center gap-4 text-xs text-gray-500">
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>5 Bed</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>4 Bath</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>3,600 sqft</span>
+                        </div>
+                        <button class="expand-btn bg-gray-900 text-white text-xs px-4 py-2 rounded-lg flex items-center justify-center gap-1.5 hover:bg-gray-700 transition w-full" aria-label="Expand">
+                            View details
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-details border-t border-gray-100">
+                    <p class="text-sm text-gray-500 leading-relaxed mb-3">Contemporary Miami residence just minutes from the beach. Features a rooftop terrace, private pool, and open floor plan ideal for entertaining with natural light throughout.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Rooftop Terrace</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Private Pool</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Smart Home</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Built 2021</span>
+                    </div>
+                    <a href="contact.html" class="inline-block bg-gray-900 text-white text-xs px-5 py-2.5 rounded-lg hover:bg-gray-700 transition">Enquire Now</a>
+                </div>
+            </div>
 
-<!--Card 2-->
-<div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group" data-type="house" data-price="1" data-beds="3">
-  <div class="relative overflow-hidden">
-    <img src="assets/point3d-commercial-imaging-ltd--45_-1tND3k-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
-    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
-    <div class="card-overlay">
-      <button class="bg-white text-gray-900 text-sm font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition">View Property</button>
-    </div>
-  </div>
-  <div class="p-5">
-    <h3 class="text-xl font-bold text-gray-900 mb-1">$2,890,000</h3>
-    <p class="text-sm text-gray-400 mb-4">1888 Skyline Drive, Austin, TX</p>
-    <div class="h-px bg-gray-200 mb-4"></div>
-    <div class="flex items-center gap-4 text-xs text-gray-500">
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>3 <span class="hidden lg:flex">Bed</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>2 <span class="hidden lg:flex">Bath</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>2,400 <span class="hidden lg:flex">sqft</span></span>
-    </div>
-  </div>
-</div>
+            <!--Card 6-->
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition duration-300 group listing-card" data-type="penthouse" data-price="2" data-beds="6">
+                <div class="relative overflow-hidden rounded-t-2xl">
+                    <img src="assets/wes-fischer-g39p1kDjvSY-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
+                    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">$5,490,000</h3>
+                    <p class="text-sm text-gray-400 mb-4">1920 straitman, TX</p>
+                    <div class="h-px bg-gray-200 mb-4"></div>
+                    <div class="flex flex-col gap-3">
+                        <div class="flex items-center gap-4 text-xs text-gray-500">
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>6 Bed</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>5 Bath</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>6,200 sqft</span>
+                        </div>
+                        <button class="expand-btn bg-gray-900 text-white text-xs px-4 py-2 rounded-lg flex items-center justify-center gap-1.5 hover:bg-gray-700 transition w-full" aria-label="Expand">
+                            View details
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-details border-t border-gray-100">
+                    <p class="text-sm text-gray-500 leading-relaxed mb-3">Luxury penthouse with wraparound skyline views and private elevator access. Features a private rooftop deck, concierge service, and premium finishes throughout every room.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Private Elevator</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Rooftop Deck</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Concierge</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Built 2022</span>
+                    </div>
+                    <a href="contact.html" class="inline-block bg-gray-900 text-white text-xs px-5 py-2.5 rounded-lg hover:bg-gray-700 transition">Enquire Now</a>
+                </div>
+            </div>
 
-<!--Card 3-->
-<div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group" data-type="house" data-price="1" data-beds="5">
-  <div class="relative overflow-hidden">
-    <img src="assets/point3d-commercial-imaging-ltd-X_JXnSBKOO4-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
-    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
-    <div class="card-overlay">
-      <button class="bg-white text-gray-900 text-sm font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition">View Property</button>
-    </div>
-  </div>
-  <div class="p-5">
-    <h3 class="text-xl font-bold text-gray-900 mb-1">$2,890,000</h3>
-    <p class="text-sm text-gray-400 mb-4">1888 Skyline Drive, Austin, TX</p>
-    <div class="h-px bg-gray-200 mb-4"></div>
-    <div class="flex items-center gap-4 text-xs text-gray-500">
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>5 <span class="hidden lg:flex">Bed</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>4 <span class="hidden lg:flex">Bath</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>4,200 <span class="hidden lg:flex">sqft</span></span>
-    </div>
-  </div>
-</div>
+            <!--Card 7-->
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition duration-300 group listing-card" data-type="villa" data-price="2" data-beds="6">
+                <div class="relative overflow-hidden rounded-t-2xl">
+                    <img src="assets/leo_visions-fFqqVSi96z0-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
+                    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">$5,490,000</h3>
+                    <p class="text-sm text-gray-400 mb-4">1920 straitman, TX</p>
+                    <div class="h-px bg-gray-200 mb-4"></div>
+                    <div class="flex flex-col gap-3">
+                        <div class="flex items-center gap-4 text-xs text-gray-500">
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>6 Bed</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>5 Bath</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>6,200 sqft</span>
+                        </div>
+                        <button class="expand-btn bg-gray-900 text-white text-xs px-4 py-2 rounded-lg flex items-center justify-center gap-1.5 hover:bg-gray-700 transition w-full" aria-label="Expand">
+                            View details
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-details border-t border-gray-100">
+                    <p class="text-sm text-gray-500 leading-relaxed mb-3">Sophisticated villa featuring dramatic architectural lines and premium materials. The estate offers a private gym, climate-controlled wine room, and sprawling manicured gardens.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Private Gym</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Wine Room</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Gardens</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Built 2020</span>
+                    </div>
+                    <a href="contact.html" class="inline-block bg-gray-900 text-white text-xs px-5 py-2.5 rounded-lg hover:bg-gray-700 transition">Enquire Now</a>
+                </div>
+            </div>
 
-<!--Card 4-->
-<div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group" data-type="villa" data-price="2" data-beds="6">
-  <div class="relative overflow-hidden">
-    <img src="assets/webaliser-_TPTXZd9mOo-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
-    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
-    <div class="card-overlay">
-      <button class="bg-white text-gray-900 text-sm font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition">View Property</button>
-    </div>
-  </div>
-  <div class="p-5">
-    <h3 class="text-xl font-bold text-gray-900 mb-1">$5,790,000</h3>
-    <p class="text-sm text-gray-400 mb-4">1688 penance Drive, taxpark</p>
-    <div class="h-px bg-gray-200 mb-4"></div>
-    <div class="flex items-center gap-4 text-xs text-gray-500">
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>6 <span class="hidden lg:flex">Bed</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>5 <span class="hidden lg:flex">Bath</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>5,400 <span class="hidden lg:flex">sqft</span></span>
-    </div>
-  </div>
-</div>
+            <!--Card 8-->
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition duration-300 group listing-card" data-type="house" data-price="1" data-beds="4">
+                <div class="relative overflow-hidden rounded-t-2xl">
+                    <img src="assets/roger-starnes-sr-lT2Hpiqgn3c-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
+                    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">$4,290,000</h3>
+                    <p class="text-sm text-gray-400 mb-4">1990 Lancaster, Pennsylvania</p>
+                    <div class="h-px bg-gray-200 mb-4"></div>
+                    <div class="flex flex-col gap-3">
+                        <div class="flex items-center gap-4 text-xs text-gray-500">
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>4 Bed</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>4 Bath</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>3,200 sqft</span>
+                        </div>
+                        <button class="expand-btn bg-gray-900 text-white text-xs px-4 py-2 rounded-lg flex items-center justify-center gap-1.5 hover:bg-gray-700 transition w-full" aria-label="Expand">
+                            View details
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-details border-t border-gray-100">
+                    <p class="text-sm text-gray-500 leading-relaxed mb-3">Charming Pennsylvania estate with classic colonial architecture updated with modern interiors. Set on 2 acres with mature trees, a barn conversion, and a heated pool.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">2 Acres</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Heated Pool</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Barn Conversion</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Built 2015</span>
+                    </div>
+                    <a href="contact.html" class="inline-block bg-gray-900 text-white text-xs px-5 py-2.5 rounded-lg hover:bg-gray-700 transition">Enquire Now</a>
+                </div>
+            </div>
 
-<!--Card 5-->
-<div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group" data-type="house" data-price="1" data-beds="5">
-  <div class="relative overflow-hidden">
-    <img src="assets/roger-starnes-sr-lPHkueOsFJ8-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
-    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
-    <div class="card-overlay">
-      <button class="bg-white text-gray-900 text-sm font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition">View Property</button>
-    </div>
-  </div>
-  <div class="p-5">
-    <h3 class="text-xl font-bold text-gray-900 mb-1">$3,560,000</h3>
-    <p class="text-sm text-gray-400 mb-4">1800 danstrout, miami</p>
-    <div class="h-px bg-gray-200 mb-4"></div>
-    <div class="flex items-center gap-4 text-xs text-gray-500">
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>5 <span class="hidden lg:flex">Bed</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>4 <span class="hidden lg:flex">Bath</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>3,600 <span class="hidden lg:flex">sqft</span></span>
-    </div>
-  </div>
-</div>
+            <!--Card 9-->
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition duration-300 group listing-card" data-type="villa" data-price="2" data-beds="4">
+                <div class="relative overflow-hidden rounded-t-2xl">
+                    <img src="assets/arvin-yuan-Tcnur1bqb_s-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
+                    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">$5,200,000</h3>
+                    <p class="text-sm text-gray-400 mb-4">1792 Buffalo, New York</p>
+                    <div class="h-px bg-gray-200 mb-4"></div>
+                    <div class="flex flex-col gap-3">
+                        <div class="flex items-center gap-4 text-xs text-gray-500">
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>4 Bed</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>5 Bath</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>4,200 sqft</span>
+                        </div>
+                        <button class="expand-btn bg-gray-900 text-white text-xs px-4 py-2 rounded-lg flex items-center justify-center gap-1.5 hover:bg-gray-700 transition w-full" aria-label="Expand">
+                            View details
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-details border-t border-gray-100">
+                    <p class="text-sm text-gray-500 leading-relaxed mb-3">Elegant New York villa with lakefront access and private dock. The interiors blend warm natural materials with contemporary design, featuring a spa, sauna, and heated floors.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Lakefront</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Private Dock</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Sauna</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Built 2018</span>
+                    </div>
+                    <a href="contact.html" class="inline-block bg-gray-900 text-white text-xs px-5 py-2.5 rounded-lg hover:bg-gray-700 transition">Enquire Now</a>
+                </div>
+            </div>
 
-<!--Card 6-->
-<div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group" data-type="penthouse" data-price="2" data-beds="6">
-  <div class="relative overflow-hidden">
-    <img src="assets/wes-fischer-g39p1kDjvSY-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
-    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
-    <div class="card-overlay">
-      <button class="bg-white text-gray-900 text-sm font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition">View Property</button>
-    </div>
-  </div>
-  <div class="p-5">
-    <h3 class="text-xl font-bold text-gray-900 mb-1">$5,490,000</h3>
-    <p class="text-sm text-gray-400 mb-4">1920 straitman, TX</p>
-    <div class="h-px bg-gray-200 mb-4"></div>
-    <div class="flex items-center gap-4 text-xs text-gray-500">
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>6 <span class="hidden lg:flex">Bed</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>5 <span class="hidden lg:flex">Bath</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>6,200 <span class="hidden lg:flex">sqft</span></span>
-    </div>
-  </div>
-</div>
+            <!--Card 10-->
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition duration-300 group listing-card" data-type="penthouse" data-price="3" data-beds="8">
+                <div class="relative overflow-hidden rounded-t-2xl">
+                    <img src="assets/frames-for-your-heart-vbSRUrNm3Ik-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
+                    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">$7,690,000</h3>
+                    <p class="text-sm text-gray-400 mb-4">Oakland, California</p>
+                    <div class="h-px bg-gray-200 mb-4"></div>
+                    <div class="flex flex-col gap-3">
+                        <div class="flex items-center gap-4 text-xs text-gray-500">
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>8 Bed</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>6 Bath</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>7,600 sqft</span>
+                        </div>
+                        <button class="expand-btn bg-gray-900 text-white text-xs px-4 py-2 rounded-lg flex items-center justify-center gap-1.5 hover:bg-gray-700 transition w-full" aria-label="Expand">
+                            View details
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-details border-t border-gray-100">
+                    <p class="text-sm text-gray-500 leading-relaxed mb-3">Crown jewel penthouse occupying the entire top floor with 360° bay views. Features private rooftop garden, chef's kitchen, art gallery hallway, and a 3-car underground parking.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">360° Views</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Rooftop Garden</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Art Gallery</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Built 2023</span>
+                    </div>
+                    <a href="contact.html" class="inline-block bg-gray-900 text-white text-xs px-5 py-2.5 rounded-lg hover:bg-gray-700 transition">Enquire Now</a>
+                </div>
+            </div>
 
-<!--Card 7-->
-<div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group" data-type="villa" data-price="2" data-beds="6">
-  <div class="relative overflow-hidden">
-    <img src="assets/leo_visions-fFqqVSi96z0-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
-    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
-    <div class="card-overlay">
-      <button class="bg-white text-gray-900 text-sm font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition">View Property</button>
-    </div>
-  </div>
-  <div class="p-5">
-    <h3 class="text-xl font-bold text-gray-900 mb-1">$5,490,000</h3>
-    <p class="text-sm text-gray-400 mb-4">1920 straitman, TX</p>
-    <div class="h-px bg-gray-200 mb-4"></div>
-    <div class="flex items-center gap-4 text-xs text-gray-500">
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>6 <span class="hidden lg:flex">Bed</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>5 <span class="hidden lg:flex">Bath</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>6,200 <span class="hidden lg:flex">sqft</span></span>
-    </div>
-  </div>
-</div>
+            <!--Card 11-->
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition duration-300 group listing-card" data-type="house" data-price="1" data-beds="4">
+                <div class="relative overflow-hidden rounded-t-2xl">
+                    <img src="assets/roger-starnes-sr-9tYp0PCF7iA-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
+                    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">$3,490,000</h3>
+                    <p class="text-sm text-gray-400 mb-4">Cambridge, Massachusetts</p>
+                    <div class="h-px bg-gray-200 mb-4"></div>
+                    <div class="flex flex-col gap-3">
+                        <div class="flex items-center gap-4 text-xs text-gray-500">
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>4 Bed</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>3 Bath</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>3,200 sqft</span>
+                        </div>
+                        <button class="expand-btn bg-gray-900 text-white text-xs px-4 py-2 rounded-lg flex items-center justify-center gap-1.5 hover:bg-gray-700 transition w-full" aria-label="Expand">
+                            View details
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-details border-t border-gray-100">
+                    <p class="text-sm text-gray-500 leading-relaxed mb-3">Historic Cambridge home beautifully restored with modern upgrades. Walking distance to Harvard Square, featuring original hardwood floors, a chef's kitchen, and a private courtyard garden.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Courtyard Garden</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Hardwood Floors</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Near Harvard</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Built 2016</span>
+                    </div>
+                    <a href="contact.html" class="inline-block bg-gray-900 text-white text-xs px-5 py-2.5 rounded-lg hover:bg-gray-700 transition">Enquire Now</a>
+                </div>
+            </div>
 
-<!--Card 8-->
-<div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group" data-type="house" data-price="1" data-beds="4">
-  <div class="relative overflow-hidden">
-    <img src="assets/roger-starnes-sr-lT2Hpiqgn3c-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
-    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
-    <div class="card-overlay">
-      <button class="bg-white text-gray-900 text-sm font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition">View Property</button>
-    </div>
-  </div>
-  <div class="p-5">
-    <h3 class="text-xl font-bold text-gray-900 mb-1">$4,290,000</h3>
-    <p class="text-sm text-gray-400 mb-4">1990 Lancaster, Pennsylvania</p>
-    <div class="h-px bg-gray-200 mb-4"></div>
-    <div class="flex items-center gap-4 text-xs text-gray-500">
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>4 <span class="hidden lg:flex">Bed</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>4 <span class="hidden lg:flex">Bath</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>3,200 <span class="hidden lg:flex">sqft</span></span>
-    </div>
-  </div>
-</div>
+            <!--Card 12-->
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition duration-300 group listing-card" data-type="villa" data-price="1" data-beds="5">
+                <div class="relative overflow-hidden rounded-t-2xl">
+                    <img src="assets/roger-starnes-sr-bk2UT5dodZE-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
+                    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">$4,490,000</h3>
+                    <p class="text-sm text-gray-400 mb-4">Pasadena, California</p>
+                    <div class="h-px bg-gray-200 mb-4"></div>
+                    <div class="flex flex-col gap-3">
+                        <div class="flex items-center gap-4 text-xs text-gray-500">
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>5 Bed</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>4 Bath</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>4,200 sqft</span>
+                        </div>
+                        <button class="expand-btn bg-gray-900 text-white text-xs px-4 py-2 rounded-lg flex items-center justify-center gap-1.5 hover:bg-gray-700 transition w-full" aria-label="Expand">
+                            View details
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-details border-t border-gray-100">
+                    <p class="text-sm text-gray-500 leading-relaxed mb-3">Pasadena California villa with Spanish Colonial Revival architecture and a sun-drenched courtyard. Features a library, sunroom, and professionally landscaped gardens with a koi pond.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Koi Pond</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Library</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Sunroom</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Built 2014</span>
+                    </div>
+                    <a href="contact.html" class="inline-block bg-gray-900 text-white text-xs px-5 py-2.5 rounded-lg hover:bg-gray-700 transition">Enquire Now</a>
+                </div>
+            </div>
 
-<!--Card 9-->
-<div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group" data-type="villa" data-price="2" data-beds="4">
-  <div class="relative overflow-hidden">
-    <img src="assets/arvin-yuan-Tcnur1bqb_s-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
-    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
-    <div class="card-overlay">
-      <button class="bg-white text-gray-900 text-sm font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition">View Property</button>
-    </div>
-  </div>
-  <div class="p-5">
-    <h3 class="text-xl font-bold text-gray-900 mb-1">$5,200,000</h3>
-    <p class="text-sm text-gray-400 mb-4">1792 Buffalo, New York</p>
-    <div class="h-px bg-gray-200 mb-4"></div>
-    <div class="flex items-center gap-4 text-xs text-gray-500">
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>4 <span class="hidden lg:flex">Bed</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>5 <span class="hidden lg:flex">Bath</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>4,200 <span class="hidden lg:flex">sqft</span></span>
-    </div>
-  </div>
-</div>
+            <!--Card 13-->
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition duration-300 group listing-card" data-type="beachfront" data-price="1" data-beds="5">
+                <div class="relative overflow-hidden rounded-t-2xl">
+                    <img src="assets/dillon-kydd-pvdx8c6Y5BY-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
+                    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">$4,590,000</h3>
+                    <p class="text-sm text-gray-400 mb-4">Omaha, Nebraska</p>
+                    <div class="h-px bg-gray-200 mb-4"></div>
+                    <div class="flex flex-col gap-3">
+                        <div class="flex items-center gap-4 text-xs text-gray-500">
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>5 Bed</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>4 Bath</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>4,200 sqft</span>
+                        </div>
+                        <button class="expand-btn bg-gray-900 text-white text-xs px-4 py-2 rounded-lg flex items-center justify-center gap-1.5 hover:bg-gray-700 transition w-full" aria-label="Expand">
+                            View details
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-details border-t border-gray-100">
+                    <p class="text-sm text-gray-500 leading-relaxed mb-3">Stunning beachfront property with direct sand access and unobstructed ocean views. Open-plan living with retractable glass walls, a boat garage, and a wraparound deck.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Beach Access</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Boat Garage</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Ocean Views</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Built 2021</span>
+                    </div>
+                    <a href="contact.html" class="inline-block bg-gray-900 text-white text-xs px-5 py-2.5 rounded-lg hover:bg-gray-700 transition">Enquire Now</a>
+                </div>
+            </div>
 
-<!--Card 10-->
-<div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group" data-type="penthouse" data-price="3" data-beds="8">
-  <div class="relative overflow-hidden">
-    <img src="assets/frames-for-your-heart-vbSRUrNm3Ik-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
-    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
-    <div class="card-overlay">
-      <button class="bg-white text-gray-900 text-sm font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition">View Property</button>
-    </div>
-  </div>
-  <div class="p-5">
-    <h3 class="text-xl font-bold text-gray-900 mb-1">$7,690,000</h3>
-    <p class="text-sm text-gray-400 mb-4">Oakland, California</p>
-    <div class="h-px bg-gray-200 mb-4"></div>
-    <div class="flex items-center gap-4 text-xs text-gray-500">
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>8 <span class="hidden lg:flex">Bed</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>6 <span class="hidden lg:flex">Bath</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>7,600 <span class="hidden lg:flex">sqft</span></span>
-    </div>
-  </div>
-</div>
+            <!--Card 14-->
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition duration-300 group listing-card" data-type="house" data-price="2" data-beds="4">
+                <div class="relative overflow-hidden rounded-t-2xl">
+                    <img src="assets/dillon-kydd-XGvwt544g8k-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
+                    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">$5,490,000</h3>
+                    <p class="text-sm text-gray-400 mb-4">Portland, Maine</p>
+                    <div class="h-px bg-gray-200 mb-4"></div>
+                    <div class="flex flex-col gap-3">
+                        <div class="flex items-center gap-4 text-xs text-gray-500">
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>4 Bed</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>3 Bath</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>3,500 sqft</span>
+                        </div>
+                        <button class="expand-btn bg-gray-900 text-white text-xs px-4 py-2 rounded-lg flex items-center justify-center gap-1.5 hover:bg-gray-700 transition w-full" aria-label="Expand">
+                            View details
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-details border-t border-gray-100">
+                    <p class="text-sm text-gray-500 leading-relaxed mb-3">Dramatic Maine coastal home with rugged cliff views and private beach path. Features a stone fireplace, exposed timber ceilings, a hot tub, and a glass-walled dining room.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Cliff Views</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Hot Tub</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Stone Fireplace</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Built 2019</span>
+                    </div>
+                    <a href="contact.html" class="inline-block bg-gray-900 text-white text-xs px-5 py-2.5 rounded-lg hover:bg-gray-700 transition">Enquire Now</a>
+                </div>
+            </div>
 
-<!--Card 11-->
-<div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group" data-type="house" data-price="1" data-beds="4" style="opacity:0; animation: fadeUp 0.6s ease forwards 1.1s;">
-  <div class="relative overflow-hidden">
-    <img src="assets/roger-starnes-sr-9tYp0PCF7iA-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
-    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
-    <div class="card-overlay">
-      <button class="bg-white text-gray-900 text-sm font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition">View Property</button>
-    </div>
-  </div>
-  <div class="p-5">
-    <h3 class="text-xl font-bold text-gray-900 mb-1">$3,490,000</h3>
-    <p class="text-sm text-gray-400 mb-4">Cambridge, Massachusetts</p>
-    <div class="h-px bg-gray-200 mb-4"></div>
-    <div class="flex items-center gap-4 text-xs text-gray-500">
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>4 <span class="hidden lg:flex">Bed</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>3 <span class="hidden lg:flex">Bath</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>3,200 <span class="hidden lg:flex">sqft</span></span>
-    </div>
-  </div>
-</div>
+            <!--Card 15-->
+            <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition duration-300 group listing-card" data-type="villa" data-price="2" data-beds="5">
+                <div class="relative overflow-hidden rounded-t-2xl">
+                    <img src="assets/wes-fischer-g39p1kDjvSY-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
+                    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
+                </div>
+                <div class="p-5">
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">$5,490,000</h3>
+                    <p class="text-sm text-gray-400 mb-4">Columbia, Missouri</p>
+                    <div class="h-px bg-gray-200 mb-4"></div>
+                    <div class="flex flex-col gap-3">
+                        <div class="flex items-center gap-4 text-xs text-gray-500">
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>5 Bed</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>4 Bath</span>
+                            <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>5,200 sqft</span>
+                        </div>
+                        <button class="expand-btn bg-gray-900 text-white text-xs px-4 py-2 rounded-lg flex items-center justify-center gap-1.5 hover:bg-gray-700 transition w-full" aria-label="Expand">
+                            View details
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-details border-t border-gray-100">
+                    <p class="text-sm text-gray-500 leading-relaxed mb-3">Breathtaking Missouri estate set on private wooded grounds. The villa features vaulted ceilings, a wraparound porch, home theatre, and a heated outdoor pool with cabana.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Wooded Grounds</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Home Theatre</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Heated Pool</span>
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">Built 2020</span>
+                    </div>
+                    <a href="contact.html" class="inline-block bg-gray-900 text-white text-xs px-5 py-2.5 rounded-lg hover:bg-gray-700 transition">Enquire Now</a>
+                </div>
+            </div>
 
-<!--Card 12-->
-<div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group" data-type="villa" data-price="1" data-beds="5">
-  <div class="relative overflow-hidden">
-    <img src="assets/roger-starnes-sr-bk2UT5dodZE-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
-    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
-    <div class="card-overlay">
-      <button class="bg-white text-gray-900 text-sm font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition">View Property</button>
-    </div>
-  </div>
-  <div class="p-5">
-    <h3 class="text-xl font-bold text-gray-900 mb-1">$4,490,000</h3>
-    <p class="text-sm text-gray-400 mb-4">Pasadena, California</p>
-    <div class="h-px bg-gray-200 mb-4"></div>
-    <div class="flex items-center gap-4 text-xs text-gray-500">
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>5 <span class="hidden lg:flex">Bed</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>4 <span class="hidden lg:flex">Bath</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>4,200 <span class="hidden lg:flex">sqft</span></span>
-    </div>
-  </div>
-</div>
+        </div>
+    </section>
 
-<!--Card 13-->
-<div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group" data-type="beachfront" data-price="1" data-beds="5">
-  <div class="relative overflow-hidden">
-    <img src="assets/dillon-kydd-pvdx8c6Y5BY-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
-    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
-    <div class="card-overlay">
-      <button class="bg-white text-gray-900 text-sm font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition">View Property</button>
-    </div>
-  </div>
-  <div class="p-5">
-    <h3 class="text-xl font-bold text-gray-900 mb-1">$4,590,000</h3>
-    <p class="text-sm text-gray-400 mb-4">Omaha, Nebraska</p>
-    <div class="h-px bg-gray-200 mb-4"></div>
-    <div class="flex items-center gap-4 text-xs text-gray-500">
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>5 <span class="hidden lg:flex">Bed</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>4 <span class="hidden lg:flex">Bath</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>4,200 <span class="hidden lg:flex">sqft</span></span>
-    </div>
-  </div>
-</div>
+    <footer class="bg-[#e5e7eb] text-gray-800 px-8 py-12 md:px-16" id="footer">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
+            <div class="space-y-4">
+                <h2 class="text-xl text-gray-900 font-bold tracking-wider uppercase">luminae</h2>
+                <p class="text-sm leading-relaxed text-gray-600 max-w-xs">Curating the world's most exceptional properties with professional precision and architectural integrity.</p>
+            </div>
+            <div class="space-y-4">
+                <h3 class="text-xs text-gray-900 font-bold tracking-widest uppercase">Explore</h3>
+                <ul class="space-y-2 text-sm text-gray-600 underline underline-offset-4 decoration-gray-400 hover:decoration-gray-800">
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="listings.html">Listings</a></li>
+                </ul>
+            </div>
+            <div class="space-y-4">
+                <h3 class="text-xs text-gray-900 font-bold tracking-widest uppercase">Support</h3>
+                <ul class="space-y-2 text-sm text-gray-600 underline underline-offset-4 decoration-gray-400 hover:decoration-gray-800">
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="space-y-4">
+                <h3 class="text-xs text-gray-900 font-bold tracking-widest uppercase">Stay Updated</h3>
+                <div class="flex items-stretch">
+                    <input type="email" placeholder="Email address" class="w-full px-4 py-2 bg-white border border-gray-300 focus:outline-none rounded-l-md text-sm">
+                    <button class="bg-[#0f172a] text-white px-5 py-2 text-sm font-medium rounded-r-md hover:bg-gray-800 transition">Join</button>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto border-t border-gray-300 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+            <p>© 2024 luminae Real Estate. All rights reserved.</p>
+            <a href="#" class="underline underline-offset-2">Terms of Service</a>
+        </div>
+    </footer>
 
-<!--Card 14-->
-<div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group" data-type="house" data-price="2" data-beds="4"> 
-  <div class="relative overflow-hidden">
-    <img src="assets/dillon-kydd-XGvwt544g8k-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
-    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
-    <div class="card-overlay">
-      <button class="bg-white text-gray-900 text-sm font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition">View Property</button>
-    </div>
-  </div>
-  <div class="p-5">
-    <h3 class="text-xl font-bold text-gray-900 mb-1">$5,490,000</h3>
-    <p class="text-sm text-gray-400 mb-4">Portland, Maine</p>
-    <div class="h-px bg-gray-200 mb-4"></div>
-    <div class="flex items-center gap-4 text-xs text-gray-500">
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>4 <span class="hidden lg:flex">Bed</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>3 <span class="hidden lg:flex">Bath</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>3,500 <span class="hidden lg:flex">sqft</span></span>
-    </div>
-  </div>
-</div>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="navbar.js"></script>
+    <script src="listings.js"></script>
+   <script>
+    // Scroll animation
+    const listingCards = document.querySelectorAll("#listings-grid .listing-card");
 
-<!--Card 15-->
-<div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition duration-300 group" data-type="villa" data-price="2" data-beds="5">
-  <div class="relative overflow-hidden">
-    <img src="assets/wes-fischer-g39p1kDjvSY-unsplash.jpg" class="w-full h-60 object-cover scale-100 group-hover:scale-105 transition duration-500 ease-in-out" alt="Property">
-    <span class="absolute top-4 left-4 bg-gray-900 text-white text-xs font-medium px-3 py-1.5 rounded-full">For Sale</span>
-    <div class="card-overlay">
-      <button class="bg-white text-gray-900 text-sm font-semibold px-6 py-3 rounded-lg hover:bg-gray-100 transition">View Property</button>
-    </div>
-  </div>
-  <div class="p-5">
-    <h3 class="text-xl font-bold text-gray-900 mb-1">$5,490,000</h3>
-    <p class="text-sm text-gray-400 mb-4">Columbia, Missouri</p>
-    <div class="h-px bg-gray-200 mb-4"></div>
-    <div class="flex items-center gap-4 text-xs text-gray-500">
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 10V6a1 1 0 011-1h16a1 1 0 011 1v4M3 10h18M3 10v8m18-8v8M3 18h18"/></svg>5 <span class="hidden lg:flex">Bed</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 12h16M4 12V7a2 2 0 012-2h3m0 0V3m0 2h6m0 0V3m0 2a2 2 0 012 2v5M4 12v5a2 2 0 002 2h12a2 2 0 002-2v-5"/></svg>4 <span class="hidden lg:flex">Bath</span></span>
-      <span class="flex items-center gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4zM4 4l16 16M14 14h6v6h-6z"/></svg>5,200 <span class="hidden lg:flex">sqft</span></span>
-    </div>
-  </div>
-</div>
+    const cardObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+                cardObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
 
-  </section>
+    listingCards.forEach((card, i) => {
+        card.style.opacity = "0";
+        card.style.transform = "translateY(20px)";
+        card.style.transitionDelay = `${i * 0.08}s`;
+        cardObserver.observe(card);
+    });
 
-  <!--Footer section-->
- <footer class="bg-[#e5e7eb] text-gray-800 px-8 py-12 md:px-16" id="footer">
-  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
-    
-    <div class="space-y-4">
-      <h2 class="text-xl text-gray-900 font-bold tracking-wider uppercase">Estate</h2>
-      <p class="text-sm leading-relaxed text-gray-600 max-w-xs">
-        Curating the world's most exceptional properties with professional precision and architectural integrity.
-      </p>
-    </div>
+    // Expand/collapse — only one card open at a time
+    listingCards.forEach((card) => {
+        const btn = card.querySelector(".expand-btn");
+        const details = card.querySelector(".card-details");
 
-    <div class="space-y-4">
-      <h3 class="text-xs text-gray-900 font-bold tracking-widest uppercase">Explore</h3>
-      <ul class="space-y-2 text-sm text-gray-600 underline underline-offset-4 decoration-gray-400 hover:decoration-gray-800">
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="listings.html">Listings</a></li>
-      </ul>
-    </div>
+        btn.addEventListener("click", () => {
+            const isOpen = details.classList.contains("open");
 
-    <div class="space-y-4">
-      <h3 class="text-xs text-gray-900 font-bold tracking-widest uppercase">Support</h3>
-      <ul class="space-y-2 text-sm text-gray-600 underline underline-offset-4 decoration-gray-400 hover:decoration-gray-800">
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-      </ul>
-    </div>
+            // Close every card
+            listingCards.forEach((c) => {
+                c.querySelector(".card-details").classList.remove("open");
+                c.querySelector(".expand-btn").classList.remove("rotated");
+            });
 
-    <div class="space-y-4">
-      <h3 class="text-xs text-gray-900 font-bold tracking-widest uppercase">Stay Updated</h3>
-      <div class="flex items-stretch">
-        <input type="email" placeholder="Email address" class="w-full px-4 py-2 bg-white border border-gray-300 focus:outline-none rounded-l-md text-sm">
-        <button class="bg-[#0f172a] text-white px-5 py-2 text-sm font-medium rounded-r-md hover:bg-gray-800 transition">
-          Join
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div class="max-w-7xl mx-auto border-t border-gray-300 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-    <p>© 2024 Estate Luxury Real Estate. All rights reserved.</p>
-    <a href="#" class="underline underline-offset-2">Terms of Service</a>
-  </div>
-</footer>
-    
-     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="navbar.js"></script>
-<script src="listings.js"></script>
-<script>
-const listingCards = document.querySelectorAll("#listings-grid .bg-white");
-
-const cardObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-      entry.target.style.opacity = "1";
-      entry.target.style.transform = "translateY(0)";
-      cardObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.1 });
-
-listingCards.forEach((card, i) => {
-  card.style.opacity = "0";
-  card.style.transform = "translateY(20px)";
-  card.style.transitionDelay = `${i * 0.08}s`;
-  cardObserver.observe(card);
-});
+            // If it wasn't open, open only this one
+            if (!isOpen) {
+                details.classList.add("open");
+                btn.classList.add("rotated");
+            }
+        });
+    });
 </script>
 </body>
 </html>
